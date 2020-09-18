@@ -1,0 +1,57 @@
+<panel-jovas>
+	<div  layout="row">
+		<div layout="row" layout-algin="start center" flex="100" layout-padding>
+	            <md-input-container flex="30">
+	                <label>Filtrar por Nome</label>
+	                <input ng-model="filter.nome">
+	            </md-input-container>
+
+	            <md-input-container flex="30">
+	                <label>Filtrar por Perfil</label>
+	                <md-select name="type" ng-model="filter.perfil">
+	                    <md-option value="administrador">administrador</md-option>
+	                    <md-option value="usuario">usuario</md-option>
+	                </md-select>
+	            </md-input-container>
+
+	            <md-input-container flex="30">
+	                <label>Filtrar por Situação</label>
+	                <md-select name="type" ng-model="filter.situacao">
+	                    <md-option value="1">ativo</md-option>
+	                    <md-option value="0">inativo</md-option>
+	                </md-select>
+	            </md-input-container>
+	    </div>        
+	    <div layout="row" layout-align="center center" layout-padding>
+	    	<md-button ng-click="goto('#/usuarios/criar')" class="md-raised md-primary">Adicionar</md-button>
+	    </div>
+    </div> 
+</panel-jovas>
+<div class="tabela-jovas">
+	<mdt-table paginated-rows="{isEnabled: true, rowsPerPageValues: [5,10,20,50]}"
+	            table-card="{isEnabled: true, title: 'Usuários', columnSelector: false}"
+	            alternate-headers="'contextual'"
+	            mdt-loading-indicator="{color: '#00CEC4'}"
+	            mdt-row-paginator="paginatorCallback(page, pageSize, options)"
+	            mdt-row-paginator-error-message="Error happened during loading nutritions."
+	            mdt-row="{
+	    	'data':usuariosList, 
+	    	'table-row-id-key': 'id',
+	    	'column-keys':[
+	    		'nome',
+	    		'cargo',
+	    		'perfil',
+	    		'situacao']
+	    	}">
+
+	    	<mdt-header-row>
+	    		<mdt-column>Nome</mdt-column>
+	    		<mdt-column>Cargo</mdt-column>
+	    		<mdt-column>Perfil</mdt-column>
+	    		<mdt-column>Situação</mdt-column>
+	    	</mdt-header-row>
+
+	    </mdt-table>	
+	
+
+</div>

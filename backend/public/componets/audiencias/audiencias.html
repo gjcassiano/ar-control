@@ -1,0 +1,58 @@
+<panel-jovas>
+	<div  layout="row">
+		<div layout="row" layout-algin="start center" flex="100" layout-padding>
+	            <md-input-container flex="25">
+	                <label>Filtrar por Numero</label>
+	                <input ng-model="filter.numero">
+	            </md-input-container >
+
+	            <md-input-container flex="25">
+	                <label>Filtrar por Reclamante</label>
+	                <input ng-model="filter.reclamante">
+	            </md-input-container>
+				<md-input-container flex="25">
+	                <label>Filtrar por Data</label>
+	                <md-datepicker md-hide-icons="true" ng-model="filter.date"></md-datepicker>
+	            </md-input-container>
+	            <md-input-container flex="25">
+	                <label>Filtrar por Status</label>
+	                <md-select name="type" ng-model="filter.userType">
+	                    <md-option value="1">concluida</md-option>
+	                    <md-option value="0">aguardando</md-option>
+	                </md-select>
+	            </md-input-container>
+	    </div> 
+    </div> 
+</panel-jovas>
+
+
+<div class="tabela-jovas">
+	<mdt-table paginated-rows="{isEnabled: true, rowsPerPageValues: [5,10,20,50]}"
+	            table-card="{isEnabled: true, title: 'Audiencias', columnSelector: false}"
+	            alternate-headers="'contextual'"
+	            mdt-loading-indicator="{color: '#00CEC4'}"
+	            mdt-row-paginator="paginatorCallback(page, pageSize, options)"
+	            mdt-row-paginator-error-message="Error happened during loading nutritions."
+	            mdt-row="{
+	    	'data':audienciasList, 
+	    	'table-row-id-key': 'id',
+	    	'column-keys':[
+	    		'numero',
+	    		'reclamante',
+	    		'data',
+	    		'hora',
+	    		'status']
+	    	}">
+
+	    	<mdt-header-row>
+	    		<mdt-column>Numero</mdt-column>
+	    		<mdt-column>Reclamante</mdt-column>
+	    		<mdt-column>Data</mdt-column>
+	    		<mdt-column>Hora</mdt-column>
+	    		<mdt-column>Status</mdt-column>
+	    	</mdt-header-row>
+
+	    </mdt-table>	
+	
+
+</div>

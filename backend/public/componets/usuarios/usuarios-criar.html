@@ -1,0 +1,43 @@
+<panel-jovas >
+	
+	<md-card-title layout="column" layout-padding>
+    	<span class="md-headline">Criar usuário</span>
+  	</md-card-title-text>
+
+  	<div layout="row" layout-algin="start center" flex="100" >
+  		<md-input-container flex="50">
+            <label>Nome</label>
+            <input ng-model="usuario.nome">
+        </md-input-container>
+
+        <md-input-container flex="50">
+            <label>Situação</label>
+            <md-select name="type" ng-model="filter.situacao">
+                <md-option value="1">ativo</md-option>
+                <md-option value="0">inativo</md-option>
+            </md-select>
+        </md-input-container>
+
+  	</div>
+  	<div layout="row" layout-algin="start center" flex="100">
+        <md-input-container flex="50">
+            <label>Cargo</label>
+            <input ng-model="usuario.cargo">
+        </md-input-container>
+
+        <md-input-container flex="50">
+            <label>Perfil</label>
+            <md-select name="type" ng-model="usuario.perfil">
+                <md-option value="administrador">administrador</md-option>
+                <md-option value="usuario">usuario</md-option>
+            </md-select>
+        </md-input-container>
+
+	</div>      
+
+	
+	<div layout="row" layout-align="end end" layout-padding>
+    	<md-button ng-click="goto('#/usuarios/')" class="md-raised md-primary">Cancelar</md-button>
+    	<md-button ng-click="save()" class="md-raised md-primary">Salvar</md-button>
+    </div>
+</panel-jovas>

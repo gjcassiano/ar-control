@@ -1,0 +1,101 @@
+<div ng-controller="HomeController as homeCtrl">
+
+	<div class="header">
+		<h1>Air controller</h1>
+	</div>
+	<div class="container"  ng-init="homeCtrl.init()">
+		
+		<md-button class="md-raised" ng-click="homeCtrl.logout()">
+			Logout
+		</md-button>
+		
+		<md-button class="md-raised md-primary" ng-click="homeCtrl.init()">
+			REFRESH
+		</md-button>
+
+		<span class="title"></span>
+		<md-nav-bar
+				ng-init="goto('page2')"
+				md-no-ink-bar="disableInkBar"
+				md-selected-nav-item="homeCtrl.currentNavItem">
+			  <md-nav-item md-nav-click="goto('page1')" name="page1">
+		        Slaves
+		      </md-nav-item>
+		      
+		      <md-nav-item md-nav-click="goto('page2')" name="page2">
+		        Scanner
+		      </md-nav-item>
+		      <md-nav-item md-nav-click="goto('page3')" name="page3">
+		        Commands
+		      </md-nav-item>
+	    </md-nav-bar>
+
+	    <!--Slaves-->
+	    <div ng-show="homeCtrl.currentNavItem === 'page1'"  md-padding>
+		    <div ng-repeat="slave in homeCtrl.slaves" layout-padding>
+				<md-card>
+					<md-card-title>
+						<md-card-title-text> {{slave.name}}</md-card-title-text>
+
+						Last ping response: {{slave.lastPingDate | date: 'dd/MM/yyyy HH:mm:ss'}}
+					</md-card-title>
+					<md-card-content>
+						<div layout="column">
+							<span>{{slave.mac}}</span>
+							<span>{{slave.ip}}</span>
+						</div>
+
+					</md-card-content>
+
+					<md-card-actions layout="row" >
+						 
+						 <md-card-icon-actions layout-align="end center">
+							 <md-button class="md-raised md-primary" ng-click="homeCtrl.ping(slave.mac)">PING!</md-button>
+							 <md-menu>
+						      <md-button class="md-icon-button" ng-click="$mdMenu.open()">
+						        <md-icon md-menu-origin md-svg-icon="app:settings"></md-icon>
+						      </md-button>
+						      <md-menu-content width="3"  ng-mouseleave="$mdMenu.close()">
+						        <md-menu-item>
+						          <md-button ng-click="homeCtrl.editSlaveDialog($event, slave)">Edit</md-button>
+						        </md-menu-item>
+						        <md-menu-item>
+						          <md-button ng-click="homeCtrl.removeSlaveDialog($event, slave)">Remove</md-button>
+						        </md-menu-item>
+						      </md-menu-content>
+						    </md-menu>
+
+						 </md-card-icon-actions>
+					 </md-card-actions>
+				</md-card>
+			</div>
+	    </div>
+
+		<!--Scanner-->
+	    <div ng-show="homeCtrl.currentNavItem === 'page2'"  md-padding>
+	    	<md-list>
+		        <md-list-item class="md-2-line" ng-repeat="subnet in homeCtrl.subnets" ng-click="null">
+		          <div class="md-list-item-text" layout="row" flex layout-align="space-between center">
+		            <div layout="column">
+			            <h3>{{ subnet.name}}</h3>
+			            <p>Created at: {{ subnet.true | date: 'dd/MM/yyyy HH:mm:ss'}}</p>
+		            </div>
+		            
+		            <div>
+			            <md-button class="md-icon-button" ng-click="homeCtrl.checkSubnet(subnet.name)">
+					    	<md-icon md-menu-origin md-svg-icon="app:import_export"></md-icon>
+					    </md-button>
+			            <md-button class="md-icon-button" ng-click="homeCtrl.removeSubnetDialog($event, subnet.name)">
+					    	<md-icon md-menu-origin md-svg-icon="app:delete"></md-icon>
+					    </md-button>
+					</div>
+		          </div>
+		        </md-list-item>
+		    </md-list>
+			<div layout="row" layout-align="end center" flex>
+				<md-button  class="md-raised md-primary" ng-click="homeCtrl.createSubnetDialog($event)">CREATE</md-button>
+			</div>
+	    </div>
+
+	</div>
+</div>
