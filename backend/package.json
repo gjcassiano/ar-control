@@ -9,7 +9,7 @@
     "express": "~4.7.2",
     "method-override": "~2.1.2",
     "moment": "^2.22.2",
-    "mongoose": "~3.6.2",
+    "mongoose": "~5.10.5",
     "morgan": "~1.2.2",
     "mysql2": "^1.5.3",
     "netmask": "^1.0.6",
