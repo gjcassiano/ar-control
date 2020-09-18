@@ -15,7 +15,7 @@
     "netmask": "^1.0.6",
     "node-cron": "^2.0.3",
     "request": "^2.88.2",
-    "sequelize": "4.41.2",
+    "sequelize": "6.3.5",
     "sqlite3": "^4.2.0"
   },
   "license": "ISC",
